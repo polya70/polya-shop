@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POLYAA UC SHOP</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* видео фон */
+
+#bgvideo{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(10,0,40,0.7);
+z-index:-1;
+}
+
+/* верхние кнопки */
+
+.reviews{
+position:fixed;
+top:20px;
+left:20px;
+background:#7a00ff;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.telegram{
+position:fixed;
+top:20px;
+right:20px;
+background:#229ED9;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* заголовок */
+
+h1{
+margin-top:100px;
+font-size:40px;
+text-shadow:0 0 15px #a855f7;
+}
+
+input{
+padding:12px;
+width:250px;
+border-radius:8px;
+border:none;
+font-size:18px;
+margin-top:20px;
+}
+
+/* пакеты */
+
+.pack{
+background:rgba(255,255,255,0.15);
+width:260px;
+margin:12px auto;
+padding:15px;
+border-radius:12px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.pack:hover{
+background:rgba(255,255,255,0.25);
+}
+
+/* окно оплаты */
+
+#paybox{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+}
+
+.paycontent{
+background:#1e0038;
+padding:30px;
+width:300px;
+margin:150px auto;
+border-radius:10px;
+}
+
+button{
+padding:12px 20px;
+background:#7a00ff;
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* отзывы */
+
+#reviews{
+margin-top:80px;
+padding-bottom:80px;
+}
+
+.reviewCard{
+background:rgba(255,255,255,0.15);
+padding:12px;
+margin:10px auto;
+width:260px;
+border-radius:10px;
+}
+
+/* адаптация под телефон */
+
+@media (max-width:600px){
+
+h1{
+font-size:28px;
+margin-top:80px;
+}
+
+input{
+width:85%;
+font-size:16px;
+}
+
+.pack{
+width:85%;
+font-size:16px;
+padding:14px;
+}
+
+.paycontent{
+width:85%;
+margin-top:120px;
+}
+
+.reviewCard{
+width:85%;
+}
+
+textarea{
+width:85%;
+}
+
+.reviews{
+top:10px;
+left:10px;
+padding:8px 14px;
+font-size:14px;
+}
+
+.telegram{
+top:10px;
+right:10px;
+padding:8px 14px;
+font-size:14px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="#reviews" class="reviews">Отзывы</a>
+<a href="https://t.me/polyaa_orders_bot" class="telegram">Telegram</a>
+
+<video autoplay muted loop id="bgvideo">
+<source src="bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<h1>POLYAA UC SHOP</h1>
+<p>Пополнение UC по игровому ID</p>
+
+<input id="player" placeholder="Введите ID"
+oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+
+<div class="pack" onclick="buy('60 UC','45 UAH')">60 UC — 45 UAH</div>
+<div class="pack" onclick="buy('325 UC','200 UAH')">325 UC — 200 UAH</div>
+<div class="pack" onclick="buy('660 UC','390 UAH')">660 UC — 390 UAH</div>
+<div class="pack" onclick="buy('1800 UC','970 UAH')">1800 UC — 970 UAH</div>
+<div class="pack" onclick="buy('3850 UC','1950 UAH')">3850 UC — 1950 UAH</div>
+<div class="pack" onclick="buy('8100 UC','3800 UAH')">8100 UC — 3800 UAH</div>
+
+
+<div id="paybox">
+<div class="paycontent">
+
+<h3 id="packname"></h3>
+
+<p>Карта</p>
+<p>4441111056868759</p>
+
+<p>USDT BEP20</p>
+<p style="font-size:12px">0xbd8b61d7ff1e02143313ba282ed3b8539a924953</p>
+
+<button onclick="paid()">Я оплатил</button>
+
+</div>
+</div>
+
+
+<div id="reviews">
+
+<h2>Отзывы покупателей</h2>
+
+<div id="reviewsList"></div>
+
+<input id="reviewName" placeholder="Ваше имя">
+
+<br><br>
+
+<textarea id="reviewText"
+placeholder="Напишите отзыв"
+style="width:260px;height:80px;border-radius:8px;border:none;padding:10px"></textarea>
+
+<br><br>
+
+<button onclick="addReview()">Оставить отзыв</button>
+
+</div>
+
+
+<script>
+
+let pack=""
+let price=""
+
+function buy(p,pr){
+
+let id=document.getElementById("player").value
+
+if(id==""){
+alert("Введите ID игрока")
+return
+}
+
+pack=p
+price=pr
+
+document.getElementById("packname").innerText=p+" — "+pr
+
+document.getElementById("paybox").style.display="block"
+
+}
+
+function paid(){
+
+let id=document.getElementById("player").value
+
+let text="Новый заказ\nID: "+id+"\nПакет: "+pack+"\nЦена: "+price
+
+let token="8673098601:AAFYad4zfnpDu8q5BM1OhBx8MEAMpFwVDRc"
+let chat="-1003388846098"
+
+fetch("https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+chat+"&text="+encodeURIComponent(text))
+
+alert("Заказ отправлен")
+
+document.getElementById("paybox").style.display="none"
+
+}
+
+
+/* отзывы */
+
+function addReview(){
+
+let name=document.getElementById("reviewName").value
+let text=document.getElementById("reviewText").value
+
+if(name=="" || text==""){
+alert("Заполните все поля")
+return
+}
+
+let token="8673098601:AAFYad4zfnpDu8q5BM1OhBx8MEAMpFwVDRc"
+let chat="-1003388846098"
+
+let message="Новый отзыв\nИмя: "+name+"\nОтзыв: "+text
+
+fetch("https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+chat+"&text="+encodeURIComponent(message))
+
+alert("Спасибо за отзыв!")
+
+document.getElementById("reviewName").value=""
+document.getElementById("reviewText").value=""
+
+}
+
+</script>
+
+</body>
+</html>
