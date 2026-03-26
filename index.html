@@ -4,7 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POLYAA UC SHOP</title>
+#managerBtn{
+position:fixed;
+bottom:25px;
+right:25px;
+background:linear-gradient(45deg,#0088cc,#00c6ff);
+color:white;
+padding:14px 24px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+box-shadow:0 0 15px rgba(0,200,255,0.8);
+animation:pulse 2s infinite;
+transition:0.3s;
+}
 
+#managerBtn:hover{
+transform:scale(1.15);
+box-shadow:0 0 25px rgba(0,200,255,1);
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px rgba(0,200,255,0.6);}
+50%{box-shadow:0 0 25px rgba(0,200,255,1);}
+100%{box-shadow:0 0 10px rgba(0,200,255,0.6);}
+}
 <style>
 
 body{
@@ -342,6 +367,11 @@ document.getElementById("reviewText").value=""
 }
 
 </script>
-
+<a href="https://t.me/polyaa21" target="_blank" id="managerBtn">
+MANAGER
+</a>
+  <a href="https://t.me/polyaa21" target="_blank" id="managerBtn">
+MANAGER
+</a>
 </body>
 </html>
