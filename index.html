@@ -246,10 +246,74 @@ margin-bottom:5px;
 font-size:14px;
 opacity:0.9;
 }
+.topMenu{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:25px;
+z-index:9999;
+}
+
+.topMenu a{
+position:relative;
+padding:12px 28px;
+border-radius:30px;
+font-weight:bold;
+letter-spacing:1px;
+text-decoration:none;
+color:#fff;
+
+background:linear-gradient(45deg,#6a00ff,#b300ff);
+box-shadow:
+0 0 10px #7a00ff,
+0 0 25px #a200ff,
+0 0 45px rgba(162,0,255,0.7);
+
+transition:0.3s;
+overflow:hidden;
+}
+
+.topMenu a:hover{
+transform:scale(1.15);
+box-shadow:
+0 0 20px #8a2bff,
+0 0 40px #b84dff,
+0 0 60px rgba(184,77,255,0.9);
+}
+
+.topMenu a::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.4),
+transparent
+);
+transform:rotate(25deg);
+animation:shine 3s infinite;
+}
+
+@keyframes shine{
+0%{left:-100%;}
+100%{left:100%;}
+}
+  
 </style>
 </head>
 
 <body>
+
+  <div class="topMenu">
+<a href="#reviews">ОТЗЫВЫ</a>
+<a href="https://t.me/polyaa21" target="_blank">TELEGRAM</a>
+</div>
 
 <a href="#reviews" class="reviews">Отзывы</a>
 <a href="https://t.me/polyaauc" class="telegram" target="_blank">Telegram</a>
