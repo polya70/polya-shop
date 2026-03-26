@@ -211,11 +211,23 @@ font-size:14px;
 oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 
 <div class="pack" onclick="buy('60 UC','45 UAH')">60 UC — 45 UAH</div>
-<div class="pack" onclick="buy('325 UC','200 UAH')">325 UC — 200 UAH</div>
-<div class="pack" onclick="buy('660 UC','390 UAH')">660 UC — 390 UAH</div>
-<div class="pack" onclick="buy('1800 UC','970 UAH')">1800 UC — 970 UAH</div>
-<div class="pack" onclick="buy('3850 UC','1950 UAH')">3850 UC — 1950 UAH</div>
-<div class="pack" onclick="buy('8100 UC','3800 UAH')">8100 UC — 3800 UAH</div>
+<div class="pack" onclick="buy('325 UC','195 UAH')">325 UC — 195 UAH</div>
+
+<div class="pack" onclick="buy('660 UC','385 UAH')">660 UC — 385 UAH</div>
+
+<div class="pack" onclick="buy('1800 UC','980 UAH')">1 800 UC — 980 UAH</div>
+
+<div class="pack" onclick="buy('3850 UC','1975 UAH')">3 850 UC — 1 975 UAH</div>
+
+<div class="pack" onclick="buy('8100 UC','3870 UAH')">8 100 UC — 3 870 UAH</div>
+
+<div class="pack" onclick="buy('16200 UC','7750 UAH')">16 200 UC — 7 750 UAH</div>
+
+<div class="pack" onclick="buy('24300 UC','11620 UAH')">24 300 UC — 11 620 UAH</div>
+
+<div class="pack" onclick="buy('32400 UC','15520 UAH')">32 400 UC — 15 520 UAH</div>
+
+<div class="pack" onclick="buy('81000 UC','39000 UAH')">81 000 UC — 39 000 UAH</div>
 
 
 <div id="paybox">
