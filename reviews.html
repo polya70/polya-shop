@@ -502,33 +502,20 @@ document.getElementById("paybox").style.display="none"
 /* отзывы */
   
 let lastSendTime = 0
-
 function addReview(){
-
 let lastSendTime = 0;
-
 function addReview() {
-
 let name = document.getElementById("reviewName").value;
 let text = document.getElementById("reviewText").value;
-
 if (name === "" || text === "") {
 alert("Заполните все поля");
 return;
 }
-
+  
 let now = Date.now();
-
 if (now - lastSendTime < 60000) {
 alert("Подождите 60 секунд перед следующим отзывом");
 return;
-}
-
-lastSendTime = now;
-
-fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name=" + encodeURIComponent(name) + "&text=" + encodeURIComponent(text));
-
-alert("Спасибо за отзыв!");
 }
   
 lastSendTime = now;
