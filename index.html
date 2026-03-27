@@ -15,7 +15,7 @@
 <style>
 
 
-  #menuButton{
+#menuButton{
 position:fixed;
 top:20px;
 left:20px;
@@ -28,34 +28,41 @@ z-index:1001;
 cursor:pointer;
 }
 
+#menuBtn{
+position:fixed;
+top:20px;
+left:20px;
+font-size:26px;
+background:#111;
+color:white;
+padding:10px 14px;
+border-radius:10px;
+z-index:2000;
+}
+
 #sideMenu{
 position:fixed;
 top:0;
-left:-280px;
-width:280px;
+left:-260px;
+width:260px;
 height:100%;
 background:#0b0b15;
+padding:80px 20px;
+transition:0.3s;
+z-index:1500;
 display:flex;
 flex-direction:column;
-padding:90px 20px;
-transition:0.3s;
-z-index:1000;
 }
 
 #sideMenu a{
 display:block;
-width:100%;
-padding:14px;
 margin-bottom:16px;
+padding:14px;
+text-align:center;
 color:white;
 text-decoration:none;
-font-size:18px;
-text-align:center;
 background:linear-gradient(90deg,#9333ea,#c084fc);
 border-radius:14px;
-box-shadow:0 0 20px rgba(168,85,247,0.6);
-box-sizing:border-box;
-max-width:100%;
 }
  
 #managerBtn{
@@ -472,18 +479,14 @@ width:200px;
 </head>
 
 <body>
-<div id="menuButton" onclick="toggleMenu()">☰</div>
-  <div id="loader">
-<img src="loader.png" class="loaderLogo">
-</div>
-  
-<div id="sideMenu" class="topMenu">
+<div id="menuBtn" onclick="toggleMenu()">☰</div>
+<div id="sideMenu">
 <a href="https://t.me/polyaauc" target="_blank">TELEGRAM</a>
 <a href="reviews.html">REVIEW</a>
 <a href="about.html">О НАС</a>
 </div>
+  
 
- 
 <video autoplay muted loop id="bgvideo">
 <source src="bg.mp4" type="video/mp4">
 </video>
@@ -607,6 +610,17 @@ let menu = document.getElementById("sideMenu");
 
 if(menu.style.left === "0px"){
 menu.style.left = "-280px";
+}else{
+menu.style.left = "0px";
+}
+}
+</script>
+  <script>
+function toggleMenu(){
+let menu = document.getElementById("sideMenu");
+
+if(menu.style.left === "0px"){
+menu.style.left = "-260px";
 }else{
 menu.style.left = "0px";
 }
