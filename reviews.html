@@ -500,6 +500,7 @@ document.getElementById("paybox").style.display="none"
 }
 
 /* отзывы */
+  
 let lastSendTime = 0
 function addReview(){
 let name=document.getElementById("reviewName").value
@@ -508,13 +509,16 @@ if(name=="" || text==""){
 alert("Заполните все поля")
 return
 }
-  
-let message="Новый отзыв\nИмя: "+name+"\nОтзыв: "+text
-fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name="+encodeURIComponent(name)+"&text="+encodeURIComponent(text))
-let now = Date.now();
+
+let now = Date.now()
 if(now - lastSendTime < 60000){
-alert("Вы уже отправили отзыв. Попробуйте снова через 60 секунд.");
-return;
+alert("Вы уже отправили отзыв. Попробуйте снова через 60 секунд.")
+return
+}
+  
+lastSendTime = now
+fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name="+encodeURIComponent(name)+"&text="+encodeURIComponent(text))
+alert("Спасибо за отзыв!")
 }
   
 lastSendTime = now;
