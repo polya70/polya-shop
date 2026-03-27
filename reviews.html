@@ -490,48 +490,36 @@ document.getElementById("packname").innerText=p+" — "+pr
 document.getElementById("paybox").style.display="block"
 
 }
-
+  
 function paid(){
-
 let id=document.getElementById("player").value
-
 let text="Новый заказ\nID: "+id+"\nПакет: "+pack+"\nЦена: "+price
-
-let token="8673098601:AAFYad4zfnpDu8q5BM1OhBx8MEAMpFwVDRc"
-let chat="-1003388846098"
-
-fetch("https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+chat+"&text="+encodeURIComponent(text))
-
+fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name="+encodeURIComponent(id)+"&text="+encodeURIComponent(text))
 alert("Заказ отправлен")
-
 document.getElementById("paybox").style.display="none"
-
 }
 
-
 /* отзывы */
-
+let lastSendTime = 0
 function addReview(){
-
 let name=document.getElementById("reviewName").value
 let text=document.getElementById("reviewText").value
-
 if(name=="" || text==""){
 alert("Заполните все поля")
 return
 }
+  
 let message="Новый отзыв\nИмя: "+name+"\nОтзыв: "+text
+fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name="+encodeURIComponent(name)+"&text="+encodeURIComponent(text))
 let now = Date.now();
 if(now - lastSendTime < 60000){
 alert("Вы уже отправили отзыв. Попробуйте снова через 60 секунд.");
 return;
 }
+  
 lastSendTime = now;
-
 fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name="+name+"&text="+text)
-
 alert("Спасибо за отзыв!")
-
 document.getElementById("reviewName").value=""
 document.getElementById("reviewText").value=""
 
