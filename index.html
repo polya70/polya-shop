@@ -13,6 +13,42 @@
 <title>POLYAA UC SHOP</title>
 
 <style>
+
+
+  #menuButton{
+position:fixed;
+top:20px;
+left:20px;
+font-size:28px;
+color:white;
+background:#111;
+padding:10px 14px;
+border-radius:8px;
+z-index:1001;
+cursor:pointer;
+}
+
+#sideMenu{
+position:fixed;
+top:0;
+left:-220px;
+width:200px;
+height:100%;
+background:#0b0b15;
+display:flex;
+flex-direction:column;
+gap:20px;
+padding:80px 20px;
+transition:0.3s;
+z-index:1000;
+}
+
+#sideMenu a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+  
 #managerBtn{
 position:fixed;
 bottom:30px;
@@ -427,11 +463,12 @@ width:200px;
 </head>
 
 <body>
+<div id="menuButton" onclick="toggleMenu()">☰</div>
   <div id="loader">
 <img src="loader.png" class="loaderLogo">
 </div>
   
-<div class="topMenu">
+<div id="sideMenu" class="topMenu">
 <a href="https://t.me/polyaauc" target="_blank">TELEGRAM</a>
 <a href="reviews.html">REVIEW</a>
 <a href="about.html">О НАС</a>
@@ -556,5 +593,16 @@ MANAGER
   <div style="opacity:0.01; font-size:1px;">
 донат пабг, купить uc pubg, пополнение uc pubg mobile, купить uc украина, uc shop, uc дешево
 </div>
+  <script>
+function toggleMenu(){
+let menu = document.getElementById("sideMenu");
+
+if(menu.style.left === "0px"){
+menu.style.left = "-220px";
+}else{
+menu.style.left = "0px";
+}
+}
+</script>
 </body>
 </html>
