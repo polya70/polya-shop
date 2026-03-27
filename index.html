@@ -33,13 +33,11 @@ animation:pulseManager 1.8s infinite;
 transform:scale(1.15);
 }
 .topMenu{
-position:fixed;
-top:20px;
-left:50%;
-transform:translateX(-50%);
 display:flex;
-gap:25px;
-z-index:9999;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:30px;
 }
 
 .topMenu a{
@@ -408,6 +406,21 @@ to{
 opacity:0;
 visibility:hidden;
 }
+}
+
+  @media (max-width:600px){
+
+.topMenu{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:12px;
+}
+
+.topMenu a{
+width:200px;
+}
+
 }
   
 </style>
