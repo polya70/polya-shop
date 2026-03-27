@@ -520,13 +520,15 @@ if(name=="" || text==""){
 alert("Заполните все поля")
 return
 }
-
-let token="8673098601:AAFYad4zfnpDu8q5BM1OhBx8MEAMpFwVDRc"
-let chat="-1003388846098"
-
 let message="Новый отзыв\nИмя: "+name+"\nОтзыв: "+text
+let now = Date.now();
+if(now - lastSendTime < 60000){
+alert("Вы уже отправили отзыв. Попробуйте снова через 60 секунд.");
+return;
+}
+lastSendTime = now;
 
-fetch("https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+chat+"&text="+encodeURIComponent(message))
+fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name="+name+"&text="+text)
 
 alert("Спасибо за отзыв!")
 
