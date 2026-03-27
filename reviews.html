@@ -503,8 +503,7 @@ document.getElementById("paybox").style.display="none"
   
 let lastSendTime = 0
 function addReview(){
-let lastSendTime = 0;
-function addReview() {
+
 let name = document.getElementById("reviewName").value;
 let text = document.getElementById("reviewText").value;
 if (name === "" || text === "") {
@@ -520,9 +519,9 @@ return;
   
 lastSendTime = now;
 fetch("https://snowy-shape-ff1e.polina702070.workers.dev/?name="+encodeURIComponent(name)+"&text="+encodeURIComponent(text))
-alert("Спасибо за отзыв!")
-document.getElementById("reviewName").value=""
-document.getElementById("reviewText").value=""
+alert("Спасибо за отзыв!");
+document.getElementById("reviewName").value="";
+document.getElementById("reviewText").value="";
 }
 
 </script>
