@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Account</title>
+<title>Player Account</title>
 
 <style>
 
@@ -13,16 +13,17 @@ color:white;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+min-height:100vh;
+margin:0;
 }
 
 .box{
 background:#17182f;
-padding:40px;
+padding:35px;
 border-radius:15px;
-width:380px;
+width:420px;
 text-align:center;
-box-shadow:0 0 30px rgba(140,0,255,0.5);
+box-shadow:0 0 35px rgba(120,0,255,0.6);
 }
 
 .avatar{
@@ -32,12 +33,37 @@ border-radius:50%;
 background:#222;
 margin:auto;
 margin-bottom:10px;
+background-size:cover;
+background-position:center;
+}
+
+.name{
+font-size:20px;
+font-weight:bold;
+margin-bottom:5px;
+}
+
+.email{
+opacity:0.6;
+font-size:13px;
+margin-bottom:15px;
+}
+
+.balance{
+font-size:16px;
+margin:10px 0;
+}
+
+.ucIcon{
+width:20px;
+vertical-align:middle;
+margin-right:6px;
 }
 
 input{
 width:100%;
 padding:10px;
-margin-top:10px;
+margin-top:8px;
 border:none;
 border-radius:6px;
 background:#0f1020;
@@ -63,7 +89,17 @@ box-shadow:0 0 10px #9333ea;
 }
 
 .nav{
+margin-top:15px;
+}
+
+.guide{
 margin-top:20px;
+text-align:left;
+font-size:13px;
+line-height:1.5;
+background:#111327;
+padding:15px;
+border-radius:10px;
 }
 
 </style>
@@ -73,25 +109,53 @@ margin-top:20px;
 
 <div class="box">
 
-<div class="avatar"></div>
+<div id="avatar" class="avatar"></div>
 
-<h3 id="email"></h3>
+<div id="nickname" class="name">Player</div>
 
-<p>💎 Bonus Balance: <span id="bonus">0</span> UC</p>
+<div id="email" class="email"></div>
 
-<input id="pubg" placeholder="Enter PUBG ID">
+<div class="balance">
+<img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" class="ucIcon">
+Bonus Balance: <span id="bonus">0</span> UC
+</div>
 
-<button id="saveBtn" onclick="savePubg()">Save PUBG ID</button>
+<input id="nickInput" placeholder="Enter nickname">
+<input id="pubgInput" placeholder="Enter PUBG ID">
+<input id="emailInput" placeholder="Enter email">
+
+<button onclick="saveProfile()">Save Profile</button>
+
+<button onclick="editProfile()">Edit Profile</button>
 
 <div class="nav">
 
-<button onclick="goShop()">🛒 Go to Shop</button>
+<button onclick="goShop()">Go to Shop</button>
 
-<button onclick="goReviews()">⭐ Reviews</button>
+<button onclick="goReviews()">Reviews</button>
 
-<button onclick="support()">💬 Support</button>
+<button onclick="support()">Support</button>
 
 <button onclick="logout()">Logout</button>
+
+</div>
+
+<div class="guide">
+
+<b>Bonus System</b><br><br>
+
+Maximum bonus balance: <b>325 UC</b><br><br>
+
+60 UC purchase → +1 UC<br>
+325 UC purchase → +1.5 UC<br>
+660 UC purchase → +3 UC<br>
+1800 UC purchase → +5 UC<br>
+3850 UC purchase → +7 UC<br>
+8100 UC purchase → +10 UC<br>
+16200 UC purchase → +12 UC<br>
+24300 UC purchase → +15 UC<br>
+32400 UC purchase → +20 UC<br>
+81000 UC purchase → +30 UC
 
 </div>
 
@@ -101,11 +165,11 @@ margin-top:20px;
 
 const email = localStorage.getItem("email")
 
-document.getElementById("email").innerText = email
+if(!email){
+window.location.href="login.html"
+}
 
-
-
-// загрузка бонусов
+document.getElementById("email").innerText=email
 
 async function loadBonus(){
 
@@ -113,58 +177,49 @@ const res = await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-b
 
 const bonus = await res.text()
 
-document.getElementById("bonus").innerText = bonus
+document.getElementById("bonus").innerText=bonus
 
 }
 
 loadBonus()
 
+function saveProfile(){
 
+const nick=document.getElementById("nickInput").value
+const pubg=document.getElementById("pubgInput").value
+const mail=document.getElementById("emailInput").value
 
-// сохранение PUBG
+localStorage.setItem("nickname",nick)
 
-async function savePubg(){
+document.getElementById("nickname").innerText=nick
 
-const pubg = document.getElementById("pubg").value
-
-await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/save-pubg?email="+email+"&id="+pubg)
-
-document.getElementById("saveBtn").style.display="none"
-
-document.getElementById("pubg").disabled=true
-
-alert("PUBG ID saved")
+alert("Profile saved")
 
 }
 
+function editProfile(){
 
+document.getElementById("nickInput").disabled=false
+document.getElementById("pubgInput").disabled=false
+document.getElementById("emailInput").disabled=false
 
-// переходы
+}
 
 function goShop(){
-
 window.location.href="index.html"
-
 }
 
 function goReviews(){
-
 window.location.href="reviews.html"
-
 }
 
 function support(){
-
-window.open("https://t.me/polyad21")
-
+window.open("https://t.me/polyaa21")
 }
 
 function logout(){
-
 localStorage.removeItem("email")
-
 window.location.href="login.html"
-
 }
 
 </script>
