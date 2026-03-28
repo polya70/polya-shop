@@ -97,7 +97,7 @@ const res=await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/login?e
 
 const text=await res.text()
 
-if(text=="login success"){
+if(text.includes("login success")){
 
 localStorage.setItem("email",email)
 localStorage.setItem("logged","true")
@@ -109,7 +109,7 @@ window.location.href="account.html"
 alert("Wrong code")
 
 }
-
+ 
 }
 
 </script>
