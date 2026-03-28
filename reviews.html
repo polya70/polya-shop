@@ -421,8 +421,37 @@ visibility:hidden;
 
 <div class="overlay"></div>
 <h1>REVIEWS POLYA UC</h1>
-
 <h2>Реальные отзывы наших клиентов</h2>
+
+<div style="margin:30px 0;">
+
+<h3>Оставить отзыв</h3>
+
+<input id="name" placeholder="Ваше имя" style="padding:8px;margin:5px;">
+<br>
+
+<textarea id="text" placeholder="Ваш отзыв" style="padding:8px;margin:5px;width:250px;height:80px;"></textarea>
+<br>
+
+<button onclick="sendReview()" style="padding:10px 20px;margin:5px;">
+Отправить
+</button>
+
+</div>
+
+<script>
+function sendReview(){
+
+const name = document.getElementById("name").value
+const text = document.getElementById("text").value
+
+fetch(`https://snowy-shape-ff1e.polina702070.workers.dev/?name=${encodeURIComponent(name)}&text=${encodeURIComponent(text)}`)
+
+alert("Отзыв отправлен на проверку")
+
+}
+  
+</script>
 
 </div>
   
