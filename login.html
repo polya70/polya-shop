@@ -3,48 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
+
+<style>
+
+body{
+background:#0f1020;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+background:#17182f;
+padding:40px;
+border-radius:15px;
+width:340px;
+text-align:center;
+box-shadow:0 0 20px rgba(140,0,255,0.5);
+}
+
+h2{
+color:#c084fc;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:none;
+background:#0f1020;
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:8px;
+background:#7c3aed;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#9333ea;
+box-shadow:0 0 10px #9333ea;
+}
+
+</style>
 </head>
 
 <body>
+
+<div class="box">
 
 <h2>Account Login</h2>
 
 <input id="email" placeholder="Enter email">
 
-<br><br>
+<button onclick="sendCode()">Send code</button>
 
 <input id="code" placeholder="Enter code">
 
-<br><br>
-
-<button onclick="sendCode()">Send code</button>
-
 <button onclick="login()">Login</button>
+
+</div>
 
 <script>
 
 async function sendCode(){
 
-const email = document.getElementById("email").value
+const email=document.getElementById("email").value
 
-await fetch(
-"https://snowy-shape-ff1e.polina702070.workers.dev/send-code?email="+email
-)
+await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/send-code?email="+email)
 
-alert("Code sent")
+alert("Code sent to email")
 
 }
 
 async function login(){
 
-const email = document.getElementById("email").value
-const code = document.getElementById("code").value
+const email=document.getElementById("email").value
+const code=document.getElementById("code").value
 
-const res = await fetch(
-"https://snowy-shape-ff1e.polina702070.workers.dev/login?email="+email+"&code="+code
-)
+const res=await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/login?email="+email+"&code="+code)
 
-const text = await res.text()
+const text=await res.text()
 
 if(text=="login success"){
 
