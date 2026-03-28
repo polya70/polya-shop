@@ -3,86 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <title>Account</title>
+
+<style>
+
+body{
+background:#0f1020;
+font-family:Arial;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:#17182f;
+padding:40px;
+border-radius:15px;
+width:380px;
+text-align:center;
+box-shadow:0 0 25px rgba(140,0,255,0.5);
+}
+
+.avatar{
+width:90px;
+height:90px;
+border-radius:50%;
+background:#222;
+margin:auto;
+margin-bottom:10px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+background:#0f1020;
+color:white;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+background:#7c3aed;
+color:white;
+cursor:pointer;
+}
+
+</style>
 </head>
 
 <body>
 
-<div>
+<div class="box">
 
-<a href="index.html">Home</a> |
+<div class="avatar"></div>
 
-<a href="account.html">Profile</a> |
+<h3 id="email"></h3>
+
+<p>💎 Bonus Balance: <span id="bonus">0</span> UC</p>
+
+<input id="pubg" placeholder="Enter PUBG ID">
+
+<button onclick="savePubg()">Save PUBG ID</button>
 
 <button onclick="logout()">Logout</button>
 
 </div>
 
-<h2>Your Account</h2>
-
-<p id="userEmail"></p>
-
-<img id="avatar" src="avatar.png" width="120" style="border-radius:60px">
-
-<br><br>
-
-<input type="file" id="avatarInput">
-
-<br><br>
-
-<input id="pubg" placeholder="Enter PUBG ID">
-
-<br><br>
-
-<button onclick="save()">Save PUBG ID</button>
-
-<p id="status"></p>
-
 <script>
 
-const email = localStorage.getItem("email")
+const email=localStorage.getItem("email")
 
-if(!email){
-window.location.href="login.html"
-}
+document.getElementById("email").innerText=email
 
-document.getElementById("userEmail").innerText="Email: "+email
-
-
-async function save(){
+async function savePubg(){
 
 const pubg=document.getElementById("pubg").value
 
-await fetch(
-"https://snowy-shape-ff1e.polina702070.workers.dev/save-pubg?email="+email+"&id="+pubg
-)
+await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/save-pubg?email="+email+"&id="+pubg)
 
-document.getElementById("status").innerText="PUBG ID saved"
+alert("Saved")
 
 }
 
+async function loadBonus(){
+
+const res=await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?email="+email)
+
+const bonus=await res.text()
+
+document.getElementById("bonus").innerText=bonus
+
+}
+
+loadBonus()
 
 function logout(){
 
 localStorage.removeItem("email")
 
 window.location.href="login.html"
-
-}
-
-
-document.getElementById("avatarInput").onchange=function(){
-
-const file=this.files[0]
-
-const reader=new FileReader()
-
-reader.onload=function(e){
-
-document.getElementById("avatar").src=e.target.result
-
-}
-
-reader.readAsDataURL(file)
 
 }
 
