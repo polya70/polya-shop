@@ -94,21 +94,31 @@ const email=document.getElementById("email").value
 await fetch(
 "https://snowy-shape-ff1e.polina702070.workers.dev/send-code?email="+email
 )
-
 alert("Code sent to email")
-
 }
 
-async function login(){
+  async function login(){
 
 const email=document.getElementById("email").value
 const code=document.getElementById("code").value
 
-await fetch(
+const res=await fetch(
 "https://snowy-shape-ff1e.polina702070.workers.dev/login?email="+email+"&code="+code
 )
 
-alert("Login successful")
+const text=await res.text()
+
+if(text==="login success"){
+
+localStorage.setItem("email",email)
+
+window.location="account.html"
+
+}else{
+
+alert("Wrong code")
+
+}
 
 }
 
