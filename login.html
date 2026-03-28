@@ -65,11 +65,8 @@ box-shadow:0 0 10px #9333ea;
 <div class="box">
 
 <h2>Account Login</h2>
-
 <input id="email" placeholder="Enter email">
-
-<button onclick="sendCode()">Send code</button>
-
+<button type="button" onclick="sendCode()">Send code</button>
 <input id="code" placeholder="Enter code">
 
 <button onclick="login()">Login</button>
@@ -80,9 +77,9 @@ box-shadow:0 0 10px #9333ea;
 
 async function sendCode(){
 
-const email=document.getElementById("email").value
+const email = document.getElementById("email").value
 
-await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/send-code?email="+email)
+await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/send-code?email="+encodeURIComponent(email))
 
 alert("Code sent to email")
 
