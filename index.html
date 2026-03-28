@@ -560,7 +560,7 @@ let text="Новый заказ\nID: "+id+"\nПакет: "+pack+"\nЦена: "+p
 let token="8673098601:AAFYad4zfnpDu8q5BM1OhBx8MEAMpFwVDRc"
 let chat="-1003388846098"
 
-fetch("https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+chat+"&text="+encodeURIComponent(text))
+fetch("https://snowy-shape-ff1e.polina702070.workers.dev/new-order?id="+id+"&pack="+pack+"&price="+price)
 
 alert("Заказ отправлен")
 
