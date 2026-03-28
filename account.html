@@ -156,5 +156,21 @@ document.getElementById("withdrawStatus").innerText="Withdraw request sent"
 
 </script>
 
+  async function loadBonus(){
+
+let pubg = localStorage.getItem("pubg")
+
+if(!pubg) return
+
+let res = await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+pubg)
+
+let bonus = await res.text()
+
+document.getElementById("bonus").innerText = bonus
+
+}
+
+loadBonus()
+
 </body>
 </html>
