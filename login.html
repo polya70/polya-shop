@@ -74,22 +74,5 @@ alert("Вход выполнен")
 
 </script>
   
-  <script>
-
-async function login(){
-
-const email=document.getElementById("email").value
-const code=document.getElementById("code").value
-
-const res = await fetch(
-"https://snowy-shape-ff1e.polina702070.workers.dev/login?email="+email+"&code="+code
-)
-
-alert("Вход выполнен")
-
-}
-
-</script>
-
 </body>
 </html>
