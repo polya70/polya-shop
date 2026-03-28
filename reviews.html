@@ -425,6 +425,33 @@ visibility:hidden;
 <h2>Реальные отзывы наших клиентов</h2>
 
 </div>
+  
+<div id="reviews"></div>
+
+<script>
+fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-reviews")
+.then(res => res.json())
+.then(data => {
+
+const container = document.getElementById("reviews")
+
+data.reverse().forEach(r => {
+
+const div = document.createElement("div")
+
+div.innerHTML = `
+<div style="border:1px solid #ccc;padding:10px;margin:10px 0;border-radius:10px;background:white;">
+<b>${r.name}</b><br>
+${r.text}
+</div>
+`
+
+container.appendChild(div)
+
+})
+
+})
+</script>
 
 
 <img src="review1.jpg" style="width:300px; border-radius:15px;">
