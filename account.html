@@ -7,7 +7,7 @@
 <style>
 
 body{
-background:#0f1020;
+background:linear-gradient(120deg,#0f1020,#1b1c3a);
 font-family:Arial;
 color:white;
 display:flex;
@@ -22,7 +22,7 @@ padding:40px;
 border-radius:15px;
 width:380px;
 text-align:center;
-box-shadow:0 0 25px rgba(140,0,255,0.5);
+box-shadow:0 0 30px rgba(140,0,255,0.5);
 }
 
 .avatar{
@@ -46,13 +46,24 @@ color:white;
 
 button{
 width:100%;
-padding:10px;
+padding:11px;
 margin-top:10px;
 border:none;
 border-radius:6px;
 background:#7c3aed;
 color:white;
+font-size:14px;
 cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#9333ea;
+box-shadow:0 0 10px #9333ea;
+}
+
+.nav{
+margin-top:20px;
 }
 
 </style>
@@ -70,39 +81,83 @@ cursor:pointer;
 
 <input id="pubg" placeholder="Enter PUBG ID">
 
-<button onclick="savePubg()">Save PUBG ID</button>
+<button id="saveBtn" onclick="savePubg()">Save PUBG ID</button>
+
+<div class="nav">
+
+<button onclick="goShop()">🛒 Go to Shop</button>
+
+<button onclick="goReviews()">⭐ Reviews</button>
+
+<button onclick="support()">💬 Support</button>
 
 <button onclick="logout()">Logout</button>
 
 </div>
 
+</div>
+
 <script>
 
-const email=localStorage.getItem("email")
+const email = localStorage.getItem("email")
 
-document.getElementById("email").innerText=email
+document.getElementById("email").innerText = email
 
-async function savePubg(){
 
-const pubg=document.getElementById("pubg").value
 
-await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/save-pubg?email="+email+"&id="+pubg)
-
-alert("Saved")
-
-}
+// загрузка бонусов
 
 async function loadBonus(){
 
-const res=await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?email="+email)
+const res = await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?email="+email)
 
-const bonus=await res.text()
+const bonus = await res.text()
 
-document.getElementById("bonus").innerText=bonus
+document.getElementById("bonus").innerText = bonus
 
 }
 
 loadBonus()
+
+
+
+// сохранение PUBG
+
+async function savePubg(){
+
+const pubg = document.getElementById("pubg").value
+
+await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/save-pubg?email="+email+"&id="+pubg)
+
+document.getElementById("saveBtn").style.display="none"
+
+document.getElementById("pubg").disabled=true
+
+alert("PUBG ID saved")
+
+}
+
+
+
+// переходы
+
+function goShop(){
+
+window.location.href="index.html"
+
+}
+
+function goReviews(){
+
+window.location.href="reviews.html"
+
+}
+
+function support(){
+
+window.open("https://t.me/polyad21")
+
+}
 
 function logout(){
 
