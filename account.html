@@ -38,6 +38,8 @@ button:hover{transform:scale(1.02);box-shadow:0 0 15px #9333ea}
 <button onclick="goReviews()">Reviews</button>
 <button onclick="support()">Support</button>
 <button onclick="logout()">Logout</button>
+<button onclick="withdraw()">Withdraw Bonus UC</button>
+<p id="withdrawStatus"></p>
 </div>
 <div class="guide">
 <b>Bonus system</b><br><br>
@@ -110,6 +112,48 @@ function goShop(){window.location.href="index.html"}
 function goReviews(){window.location.href="reviews.html"}
 function support(){window.open("https://t.me/polyaa21")}
 function logout(){localStorage.removeItem("email");window.location.href="login.html"}
+</script>
+
+  <script>
+
+/* твой существующий код */
+
+function withdraw(){
+
+let bonus=parseInt(localStorage.getItem("bonus"))||0
+let email=localStorage.getItem("email")
+let pubg=localStorage.getItem("pubg")
+let nickname=localStorage.getItem("nickname")
+
+if(bonus<30){
+document.getElementById("withdrawStatus").innerText="Minimum withdraw is 30 UC"
+return
+}
+
+fetch("https://api.telegram.org/bot8673098601:AAFYad4zfnpDu8q5BM1OhBx8MEAMpFwVDRc/sendMessage",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+chat_id:"-1003388846098",
+text:
+"WITHDRAW REQUEST\n\n"+
+"Player: "+nickname+"\n"+
+"Email: "+email+"\n"+
+"PUBG ID: "+pubg+"\n"+
+"Bonus: "+bonus+" UC"
+})
+})
+
+localStorage.setItem("bonus",0)
+
+document.getElementById("bonus").innerText=0
+
+document.getElementById("withdrawStatus").innerText="Withdraw request sent"
+
+}
+
 </script>
 
 </body>
