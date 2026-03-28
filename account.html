@@ -2,152 +2,48 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Player Account</title>
-
+<title>Player Profile</title>
 <style>
-
-body{
-background:linear-gradient(120deg,#0f1020,#1b1c3a);
-font-family:Arial;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-margin:0;
-}
-
-.box{
-background:#17182f;
-padding:35px;
-border-radius:15px;
-width:420px;
-text-align:center;
-box-shadow:0 0 35px rgba(120,0,255,0.6);
-}
-
-.avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-background:#222;
-margin:auto;
-margin-bottom:10px;
-background-size:cover;
-background-position:center;
-}
-
-.name{
-font-size:20px;
-font-weight:bold;
-margin-bottom:5px;
-}
-
-.email{
-opacity:0.6;
-font-size:13px;
-margin-bottom:15px;
-}
-
-.balance{
-font-size:16px;
-margin:10px 0;
-}
-
-.ucIcon{
-width:20px;
-vertical-align:middle;
-margin-right:6px;
-}
-
-input{
-width:100%;
-padding:10px;
-margin-top:8px;
-border:none;
-border-radius:6px;
-background:#0f1020;
-color:white;
-}
-
-button{
-width:100%;
-padding:11px;
-margin-top:10px;
-border:none;
-border-radius:6px;
-background:#7c3aed;
-color:white;
-font-size:14px;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-background:#9333ea;
-box-shadow:0 0 10px #9333ea;
-}
-
-.nav{
-margin-top:15px;
-}
-
-.guide{
-margin-top:20px;
-text-align:left;
-font-size:13px;
-line-height:1.5;
-background:#111327;
-padding:15px;
-border-radius:10px;
-}
-
+body{margin:0;font-family:Arial;background:radial-gradient(circle at top,#1b1c3a,#0f1020);color:white;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.box{width:420px;background:#16172b;padding:35px;border-radius:18px;box-shadow:0 0 40px rgba(140,0,255,0.5);text-align:center}
+.avatar{width:100px;height:100px;border-radius:50%;background:#222;margin:auto;margin-bottom:15px;background-size:cover;background-position:center;cursor:pointer}
+.name{font-size:22px;font-weight:bold;margin-bottom:5px}
+.email{opacity:.6;font-size:13px;margin-bottom:15px}
+.balance{font-size:17px;margin:15px 0;display:flex;justify-content:center;align-items:center;gap:8px}
+.ucIcon{width:28px}
+input{width:100%;padding:10px;margin-top:8px;border:none;border-radius:6px;background:#0f1020;color:white;font-size:14px}
+button{width:100%;padding:12px;margin-top:10px;border:none;border-radius:8px;background:linear-gradient(90deg,#7c3aed,#9333ea);color:white;font-size:14px;cursor:pointer;transition:.25s}
+button:hover{transform:scale(1.02);box-shadow:0 0 15px #9333ea}
+.nav{margin-top:15px}
+.guide{margin-top:20px;text-align:left;font-size:13px;line-height:1.5;background:#0f1020;padding:15px;border-radius:10px}
 </style>
 </head>
-
 <body>
-
 <div class="box">
-
 <div id="avatar" class="avatar"></div>
-
+<input type="file" id="avatarUpload" style="display:none">
 <div id="nickname" class="name">Player</div>
-
 <div id="email" class="email"></div>
-
 <div class="balance">
-<img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" class="ucIcon">
-Bonus Balance: <span id="bonus">0</span> UC
+<img src="uc.png" class="ucIcon">
+<span id="bonus">0</span> UC
 </div>
-
-<input id="nickInput" placeholder="Enter nickname">
-<input id="pubgInput" placeholder="Enter PUBG ID">
-<input id="emailInput" placeholder="Enter email">
-
-<button onclick="saveProfile()">Save Profile</button>
-
-<button onclick="editProfile()">Edit Profile</button>
-
+<input id="nickInput" placeholder="Nickname">
+<input id="pubgInput" placeholder="PUBG ID">
+<input id="emailInput" placeholder="Email">
+<button id="saveBtn">Save Profile</button>
+<button id="editBtn">Edit Profile</button>
 <div class="nav">
-
 <button onclick="goShop()">Go to Shop</button>
-
 <button onclick="goReviews()">Reviews</button>
-
 <button onclick="support()">Support</button>
-
 <button onclick="logout()">Logout</button>
-
 </div>
-
 <div class="guide">
-
-<b>Bonus System</b><br><br>
-
+<b>Bonus system</b><br><br>
 Maximum bonus balance: <b>325 UC</b><br><br>
-
 60 UC purchase → +1 UC<br>
-325 UC purchase → +2 UC<br>
+325 UC purchase → +1.5 UC<br>
 660 UC purchase → +3 UC<br>
 1800 UC purchase → +5 UC<br>
 3850 UC purchase → +7 UC<br>
@@ -156,72 +52,64 @@ Maximum bonus balance: <b>325 UC</b><br><br>
 24300 UC purchase → +15 UC<br>
 32400 UC purchase → +20 UC<br>
 81000 UC purchase → +30 UC
-
 </div>
-
 </div>
 
 <script>
+const avatar=document.getElementById("avatar")
+const upload=document.getElementById("avatarUpload")
+const nickInput=document.getElementById("nickInput")
+const pubgInput=document.getElementById("pubgInput")
+const emailInput=document.getElementById("emailInput")
+const nickname=document.getElementById("nickname")
+const email=document.getElementById("email")
+const saveBtn=document.getElementById("saveBtn")
+const editBtn=document.getElementById("editBtn")
 
-const email = localStorage.getItem("email")
-
-if(!email){
-window.location.href="login.html"
+function loadProfile(){
+const nick=localStorage.getItem("nick")
+const pubg=localStorage.getItem("pubg")
+const mail=localStorage.getItem("mail")
+const avatarImg=localStorage.getItem("avatar")
+if(nick){nickname.innerText=nick;nickInput.value=nick}
+if(pubg){pubgInput.value=pubg}
+if(mail){email.innerText=mail;emailInput.value=mail}
+if(avatarImg){avatar.style.backgroundImage="url("+avatarImg+")"}
+lockInputs()
 }
-
-document.getElementById("email").innerText=email
-
-async function loadBonus(){
-
-const res = await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?email="+email)
-
-const bonus = await res.text()
-
-document.getElementById("bonus").innerText=bonus
-
-}
-
-loadBonus()
+loadProfile()
 
 function saveProfile(){
-
-const nick=document.getElementById("nickInput").value
-const pubg=document.getElementById("pubgInput").value
-const mail=document.getElementById("emailInput").value
-
-localStorage.setItem("nickname",nick)
-
-document.getElementById("nickname").innerText=nick
-
-alert("Profile saved")
-
+localStorage.setItem("nick",nickInput.value)
+localStorage.setItem("pubg",pubgInput.value)
+localStorage.setItem("mail",emailInput.value)
+nickname.innerText=nickInput.value
+email.innerText=emailInput.value
+lockInputs()
+saveBtn.style.display="none"
 }
 
-function editProfile(){
+function lockInputs(){nickInput.disabled=true;pubgInput.disabled=true;emailInput.disabled=true}
+function unlockInputs(){nickInput.disabled=false;pubgInput.disabled=false;emailInput.disabled=false;saveBtn.style.display="block"}
 
-document.getElementById("nickInput").disabled=false
-document.getElementById("pubgInput").disabled=false
-document.getElementById("emailInput").disabled=false
+editBtn.onclick=function(){unlockInputs()}
+saveBtn.onclick=function(){saveProfile()}
 
+avatar.onclick=function(){upload.click()}
+upload.onchange=function(){
+const file=this.files[0]
+const reader=new FileReader()
+reader.onload=function(e){
+avatar.style.backgroundImage="url("+e.target.result+")"
+localStorage.setItem("avatar",e.target.result)
+}
+reader.readAsDataURL(file)
 }
 
-function goShop(){
-window.location.href="index.html"
-}
-
-function goReviews(){
-window.location.href="reviews.html"
-}
-
-function support(){
-window.open("https://t.me/polyaa21")
-}
-
-function logout(){
-localStorage.removeItem("email")
-window.location.href="login.html"
-}
-
+function goShop(){window.location.href="index.html"}
+function goReviews(){window.location.href="reviews.html"}
+function support(){window.open("https://t.me/polyaa21")}
+function logout(){localStorage.removeItem("email");window.location.href="login.html"}
 </script>
 
 </body>
