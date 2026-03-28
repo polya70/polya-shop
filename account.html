@@ -50,6 +50,13 @@ cursor:pointer;
 <div class="box">
 
 <h2>Your Account</h2>
+<img id="avatar" width="120" style="border-radius:60px">
+
+<br><br>
+
+<input type="file" id="avatarInput">
+
+<br><br>
 
 <input id="pubg" placeholder="Enter PUBG ID">
 
@@ -72,6 +79,22 @@ await fetch(
 )
 
 document.getElementById("status").innerText="PUBG ID saved"
+
+}
+
+  document.getElementById("avatarInput").onchange = function(){
+
+const file = this.files[0]
+
+const reader = new FileReader()
+
+reader.onload = function(e){
+
+document.getElementById("avatar").src = e.target.result
+
+}
+
+reader.readAsDataURL(file)
 
 }
 
