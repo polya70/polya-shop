@@ -614,5 +614,29 @@ menu.style.left = "0px";
 }
 </script>
 
+  <script>
+
+const logged = localStorage.getItem("logged")
+
+if(logged==="true"){
+console.log("user logged")
+}else{
+console.log("guest")
+}
+
+</script>
+
+  <script>
+
+const email = localStorage.getItem("email")
+const accountBtn = document.querySelector('a[href="login.html"]')
+
+if(email){
+accountBtn.innerText="MY PROFILE"
+accountBtn.href="account.html"
+}
+
+</script>
+
 </body>
 </html>
