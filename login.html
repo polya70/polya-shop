@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+<title>Account Login</title>
 
 <style>
 
@@ -20,9 +20,9 @@ margin:0;
 background:#1b1b2e;
 padding:40px;
 border-radius:15px;
-width:320px;
+width:350px;
 text-align:center;
-box-shadow:0 0 20px rgba(0,0,0,0.5);
+box-shadow:0 0 20px rgba(0,0,0,0.6);
 }
 
 h2{
@@ -35,7 +35,6 @@ padding:12px;
 margin:10px 0;
 border-radius:8px;
 border:none;
-outline:none;
 font-size:14px;
 }
 
@@ -49,7 +48,6 @@ background:#6a00ff;
 color:white;
 font-size:16px;
 cursor:pointer;
-transition:0.2s;
 }
 
 button:hover{
@@ -57,9 +55,9 @@ background:#7d1aff;
 }
 
 .small{
+margin-top:10px;
 font-size:12px;
 opacity:0.7;
-margin-top:10px;
 }
 
 </style>
@@ -80,7 +78,7 @@ margin-top:10px;
 <button onclick="login()">Login</button>
 
 <div class="small">
-You will receive a login code by email
+Login with email verification
 </div>
 
 </div>
@@ -94,25 +92,27 @@ const email=document.getElementById("email").value
 await fetch(
 "https://snowy-shape-ff1e.polina702070.workers.dev/send-code?email="+email
 )
-alert("Code sent to email")
+
+alert("Code generated")
+
 }
 
-  async function login(){
+async function login(){
 
 const email=document.getElementById("email").value
 const code=document.getElementById("code").value
 
-const res=await fetch(
+const res = await fetch(
 "https://snowy-shape-ff1e.polina702070.workers.dev/login?email="+email+"&code="+code
 )
 
-const text=await res.text()
+const text = await res.text()
 
-if(text==="login success"){
+if(text === "login success"){
 
-localStorage.setItem("email",email)
+localStorage.setItem("email", email)
 
-window.location="account.html"
+window.location = "account.html"
 
 }else{
 
