@@ -112,6 +112,19 @@ function goShop(){window.location.href="index.html"}
 function goReviews(){window.location.href="reviews.html"}
 function support(){window.open("https://t.me/polyaa21")}
 function logout(){localStorage.removeItem("email");window.location.href="login.html"}
+
+setTimeout(()=>{
+
+const id = document.querySelectorAll("input")[1].value
+
+fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+id)
+.then(r=>r.text())
+.then(bonus=>{
+document.getElementById("bonus").innerText = bonus
+})
+
+},500)
+
 </script>
 
   <script>
