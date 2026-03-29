@@ -3,19 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <title>Player Profile</title>
+
 <style>
-body{margin:0;font-family:Arial;background:radial-gradient(circle at top,#1b1c3a,#0f1020);color:white;display:flex;justify-content:center;align-items:center;min-height:100vh}
-.box{width:420px;background:#16172b;padding:35px;border-radius:18px;box-shadow:0 0 40px rgba(140,0,255,0.5);text-align:center}
-.avatar{width:100px;height:100px;border-radius:50%;background:#222;margin:auto;margin-bottom:15px;background-size:cover;background-position:center;cursor:pointer}
-.name{font-size:22px;font-weight:bold;margin-bottom:5px}
-.email{opacity:.6;font-size:13px;margin-bottom:15px}
-.balance{font-size:17px;margin:15px 0;display:flex;justify-content:center;align-items:center;gap:8px}
-.ucIcon{width:28px}
-input{width:100%;padding:10px;margin-top:8px;border:none;border-radius:6px;background:#0f1020;color:white;font-size:14px}
-button{width:100%;padding:12px;margin-top:10px;border:none;border-radius:8px;background:linear-gradient(90deg,#7c3aed,#9333ea);color:white;font-size:14px;cursor:pointer;transition:.25s}
-button:hover{transform:scale(1.02);box-shadow:0 0 15px #9333ea}
-.nav{margin-top:15px}
-.guide{margin-top:20px;text-align:left;font-size:13px;line-height:1.5;background:#0f1020;padding:15px;border-radius:10px}
+
+body{
+margin:0;
+font-family:Arial;
+background:radial-gradient(circle at top,#1b1c3a,#0f1020);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.box{
+width:420px;
+background:#16172b;
+padding:35px;
+border-radius:18px;
+box-shadow:0 0 40px rgba(140,0,255,0.5);
+text-align:center;
+}
+
+.avatar{
+width:100px;
+height:100px;
+border-radius:50%;
+background:#222;
+margin:auto;
+margin-bottom:15px;
+background-size:cover;
+background-position:center;
+cursor:pointer;
+}
+
+.name{
+font-size:22px;
+font-weight:bold;
+margin-bottom:5px;
+}
+
+.email{
+opacity:.6;
+font-size:13px;
+margin-bottom:15px;
+}
+
+.balance{
+font-size:17px;
+margin:15px 0;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:8px;
+}
+
+.ucIcon{
+width:28px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:8px;
+border:none;
+border-radius:6px;
+background:#0f1020;
+color:white;
+font-size:14px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:linear-gradient(90deg,#7c3aed,#9333ea);
+color:white;
+font-size:14px;
+cursor:pointer;
+transition:.25s;
+}
+
+button:hover{
+transform:scale(1.02);
+box-shadow:0 0 15px #9333ea;
+}
+
+.nav{
+margin-top:15px;
+}
 
 .guide{
 margin-top:20px;
@@ -48,198 +127,253 @@ text-align:center;
 font-size:13px;
 opacity:0.7;
 }
-  
+
 </style>
 </head>
+
 <body>
+
 <div class="box">
+
 <div id="avatar" class="avatar"></div>
 <input type="file" id="avatarUpload" style="display:none">
+
 <div id="nickname" class="name">Player</div>
 <div id="email" class="email"></div>
+
 <div class="balance">
 <img src="uc.png" class="ucIcon">
-<span id="bonus">...</span>
+<span id="bonus">0</span>
 </div>
+
 <input id="nickInput" placeholder="Nickname">
 <input id="pubgInput" placeholder="PUBG ID">
 <input id="emailInput" placeholder="Email">
+
 <button id="saveBtn">Save Profile</button>
 <button id="editBtn">Edit Profile</button>
+
 <div class="nav">
+
 <button onclick="goShop()">Go to Shop</button>
 <button onclick="goReviews()">Reviews</button>
 <button onclick="support()">Support</button>
-<button onclick="logout()">Logout</button>
 <button onclick="withdraw()">Withdraw Bonus UC</button>
+<button onclick="logout()">Logout</button>
+
 <p id="withdrawStatus"></p>
+
 </div>
 
 <div class="guide">
 
 <h3>💎 BONUS SYSTEM</h3>
 
-<div class="bonusRow">
-<span>60 UC purchase</span>
-<span class="bonus">+1 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>325 UC purchase</span>
-<span class="bonus">+1.5 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>660 UC purchase</span>
-<span class="bonus">+3 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>1800 UC purchase</span>
-<span class="bonus">+5 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>3850 UC purchase</span>
-<span class="bonus">+7 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>8100 UC purchase</span>
-<span class="bonus">+10 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>16200 UC purchase</span>
-<span class="bonus">+12 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>24300 UC purchase</span>
-<span class="bonus">+15 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>32400 UC purchase</span>
-<span class="bonus">+20 UC</span>
-</div>
-
-<div class="bonusRow">
-<span>81100 UC purchase</span>
-<span class="bonus">+30 UC</span>
-</div>
+<div class="bonusRow"><span>60 UC purchase</span><span class="bonus">+1 UC</span></div>
+<div class="bonusRow"><span>325 UC purchase</span><span class="bonus">+1.5 UC</span></div>
+<div class="bonusRow"><span>660 UC purchase</span><span class="bonus">+3 UC</span></div>
+<div class="bonusRow"><span>1800 UC purchase</span><span class="bonus">+5 UC</span></div>
+<div class="bonusRow"><span>3850 UC purchase</span><span class="bonus">+7 UC</span></div>
+<div class="bonusRow"><span>8100 UC purchase</span><span class="bonus">+10 UC</span></div>
+<div class="bonusRow"><span>16200 UC purchase</span><span class="bonus">+12 UC</span></div>
+<div class="bonusRow"><span>24300 UC purchase</span><span class="bonus">+15 UC</span></div>
+<div class="bonusRow"><span>32400 UC purchase</span><span class="bonus">+20 UC</span></div>
+<div class="bonusRow"><span>81100 UC purchase</span><span class="bonus">+30 UC</span></div>
 
 <p class="bonusLimit">Maximum bonus balance: 325 UC</p>
 
 </div>
-  
+
 </div>
 
 <script>
+
+/* ПРОВЕРКА СЕССИИ */
+
+if(localStorage.getItem("session")!=="active"){
+window.location.href="login.html"
+}
+
+/* DOM */
+
 const avatar=document.getElementById("avatar")
 const upload=document.getElementById("avatarUpload")
+
 const nickInput=document.getElementById("nickInput")
 const pubgInput=document.getElementById("pubgInput")
 const emailInput=document.getElementById("emailInput")
+
 const nickname=document.getElementById("nickname")
 const email=document.getElementById("email")
+
 const saveBtn=document.getElementById("saveBtn")
 const editBtn=document.getElementById("editBtn")
 
+/* ПРОФИЛЬ */
+
 function loadProfile(){
+
 const nick=localStorage.getItem("nick")
 const pubg=localStorage.getItem("pubg")
 const mail=localStorage.getItem("mail")
 const avatarImg=localStorage.getItem("avatar")
-if(nick){nickname.innerText=nick;nickInput.value=nick}
-if(pubg){pubgInput.value=pubg}
-if(mail){email.innerText=mail;emailInput.value=mail}
-if(avatarImg){avatar.style.backgroundImage="url("+avatarImg+")"}
-lockInputs()
+
+if(nick){
+nickname.innerText=nick
+nickInput.value=nick
 }
+
+if(pubg){
+pubgInput.value=pubg
+}
+
+if(mail){
+email.innerText=mail
+emailInput.value=mail
+}
+
+if(avatarImg){
+avatar.style.backgroundImage="url("+avatarImg+")"
+}
+
+lockInputs()
+
+}
+
 loadProfile()
 
 function saveProfile(){
+
 localStorage.setItem("nick",nickInput.value)
 localStorage.setItem("pubg",pubgInput.value)
 localStorage.setItem("mail",emailInput.value)
+
 nickname.innerText=nickInput.value
 email.innerText=emailInput.value
+
 lockInputs()
+
+}
+
+function lockInputs(){
+nickInput.disabled=true
+pubgInput.disabled=true
+emailInput.disabled=true
 saveBtn.style.display="none"
 }
 
-function lockInputs(){nickInput.disabled=true;pubgInput.disabled=true;emailInput.disabled=true}
-function unlockInputs(){nickInput.disabled=false;pubgInput.disabled=false;emailInput.disabled=false;saveBtn.style.display="block"}
+function unlockInputs(){
+nickInput.disabled=false
+pubgInput.disabled=false
+emailInput.disabled=false
+saveBtn.style.display="block"
+}
 
-editBtn.onclick=function(){unlockInputs()}
-saveBtn.onclick=function(){saveProfile()}
+editBtn.onclick=unlockInputs
+saveBtn.onclick=saveProfile
 
-avatar.onclick=function(){upload.click()}
+/* АВАТАР */
+
+avatar.onclick=function(){
+upload.click()
+}
+
 upload.onchange=function(){
+
 const file=this.files[0]
 const reader=new FileReader()
+
 reader.onload=function(e){
+
 avatar.style.backgroundImage="url("+e.target.result+")"
 localStorage.setItem("avatar",e.target.result)
+
 }
+
 reader.readAsDataURL(file)
-}
-
-function goShop(){window.location.href="index.html"}
-function goReviews(){window.location.href="reviews.html"}
-function support(){window.open("https://t.me/polyaa21")}
-function logout(){localStorage.removeItem("email");window.location.href="login.html"}
-
-function loadBonus(){
-
-const id = localStorage.getItem("pubg")
-  
-fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+id)
-.then(r=>r.text())
-.then(bonus=>{
-document.getElementById("bonus").innerText = bonus
-localStorage.setItem("bonus", bonus)
-})
 
 }
 
-setTimeout(loadBonus,500)
+/* НАВИГАЦИЯ */
+
+function goShop(){
+window.location.href="index.html"
+}
+
+function goReviews(){
+window.location.href="reviews.html"
+}
+
+function support(){
+window.open("https://t.me/polyaa21")
+}
+
+/* LOGOUT */
+
+function logout(){
+
+localStorage.removeItem("session")
+localStorage.removeItem("logged")
+
+window.location.href="login.html"
+
+}
+
+/* БОНУС */
+
+async function loadBonus(){
+
+let pubg=localStorage.getItem("pubg")
+
+if(!pubg)return
+
+let res=await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+pubg)
+
+let bonus=await res.text()
+
+document.getElementById("bonus").innerText=bonus
+
+}
+
+loadBonus()
+
 setInterval(loadBonus,5000)
 
-</script>
-
-  <script>
-
-/* твой существующий код */
+/* ВЫВОД */
 
 function withdraw(){
 
-let bonus = parseInt(document.getElementById("bonus").innerText) || 0
-let email=localStorage.getItem("email")
+let bonus=parseFloat(document.getElementById("bonus").innerText)||0
+let email=localStorage.getItem("mail")
 let pubg=localStorage.getItem("pubg")
-let nickname=localStorage.getItem("nickname")
+let nickname=localStorage.getItem("nick")
 
 if(bonus<30){
+
 document.getElementById("withdrawStatus").innerText="Minimum withdraw is 30 UC"
+
 return
+
 }
 
 fetch("https://api.telegram.org/bot8673098601:AAFYad4zfnpDu8q5BM1OhBx8MEAMpFwVDRc/sendMessage",{
+
 method:"POST",
+
 headers:{
 "Content-Type":"application/json"
 },
+
 body:JSON.stringify({
+
 chat_id:"-1003388846098",
+
 text:
 "WITHDRAW REQUEST\n\n"+
 "Player: "+nickname+"\n"+
 "Email: "+email+"\n"+
 "PUBG ID: "+pubg+"\n"+
-"Bonus: "+bonus+" UC"
-
-,
+"Bonus: "+bonus+" UC",
 
 reply_markup:{
 inline_keyboard:[
@@ -248,35 +382,16 @@ inline_keyboard:[
 ]
 ]
 }
-  
-})
+
 })
 
-localStorage.setItem("bonus",0)
-
-document.getElementById("bonus").innerText=0
+})
 
 document.getElementById("withdrawStatus").innerText="Withdraw request sent"
 
 }
 
-    async function loadBonus(){
-
-let pubg = localStorage.getItem("pubg")
-
-if(!pubg) return
-
-let res = await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+pubg)
-
-let bonus = await res.text()
-
-document.getElementById("bonus").innerText = bonus
-
-}
-
-loadBonus()
-
 </script>
 
- </body>
+</body>
 </html>
