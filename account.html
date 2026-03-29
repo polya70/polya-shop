@@ -173,7 +173,7 @@ let pubg = localStorage.getItem("pubg")
 
 if(!pubg) return
 
-let res = await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/getBonus?id="+pubg)
+let res = await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-Bonus?id="+pubg)
 
 let bonus = await res.text()
 
