@@ -171,6 +171,14 @@ transform:translateY(0);
 
 <body>
 
+  <script>
+
+if(localStorage.getItem("session")!=="active"){
+window.location.href="login.html"
+}
+
+</script>
+
 <video autoplay muted loop>
 <source src="bg.mp4" type="video/mp4">
 </video>
