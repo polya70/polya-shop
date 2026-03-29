@@ -26,7 +26,7 @@ button:hover{transform:scale(1.02);box-shadow:0 0 15px #9333ea}
 <div id="email" class="email"></div>
 <div class="balance">
 <img src="uc.png" class="ucIcon">
-<span id="bonus">0</span> 
+<span id="bonus">...</span>
 </div>
 <input id="nickInput" placeholder="Nickname">
 <input id="pubgInput" placeholder="PUBG ID">
@@ -113,7 +113,7 @@ function goReviews(){window.location.href="reviews.html"}
 function support(){window.open("https://t.me/polyaa21")}
 function logout(){localStorage.removeItem("email");window.location.href="login.html"}
 
-setTimeout(()=>{
+function loadBonus(){
 
 const id = document.querySelectorAll("input")[1].value
 
@@ -123,7 +123,10 @@ fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+id)
 document.getElementById("bonus").innerText = bonus
 })
 
-},500)
+}
+
+setTimeout(loadBonus,500)
+setInterval(loadBonus,5000)
 
 </script>
 
