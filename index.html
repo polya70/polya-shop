@@ -475,6 +475,15 @@ width:200px;
 </head>
 
 <body>
+
+<script>
+
+if(localStorage.getItem("session")!=="active"){
+window.location.href="login.html"
+}
+
+</script>
+  
 <div id="menuBtn" onclick="toggleMenu()">☰</div>
 <div id="sideMenu">
 <a href="https://t.me/polyaauc" target="_blank">TELEGRAM CHANNEL</a>
