@@ -32,7 +32,7 @@ color:#c084fc;
 input{
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:15px;
 border-radius:8px;
 border:none;
 background:#0f1020;
@@ -57,6 +57,17 @@ background:#9333ea;
 box-shadow:0 0 10px #9333ea;
 }
 
+a{
+display:block;
+margin-top:15px;
+color:#c084fc;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
 </style>
 </head>
 
@@ -64,39 +75,30 @@ box-shadow:0 0 10px #9333ea;
 
 <div class="box">
 
-<h2>Account Login</h2>
-<input id="email" placeholder="Enter email">
-<button type="button" onclick="sendCode()">Send code</button>
-<input id="code" placeholder="Enter code">
+<h2>Login with Telegram</h2>
 
-<button onclick="login()">Login</button>
+<a href="https://t.me/polyaa_login_bot" target="_blank">
+Open Telegram Bot
+</a>
+
+<input id="tgcode" placeholder="Enter Telegram login code">
+
+<button onclick="tglogin()">Login</button>
 
 </div>
 
 <script>
 
-async function sendCode(){
+async function tglogin(){
 
-const email = document.getElementById("email").value
+const code=document.getElementById("tgcode").value
 
-await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/send-code?email="+encodeURIComponent(email))
-
-alert("Code sent to email")
-
-}
-
-async function login(){
-
-const email=document.getElementById("email").value
-const code=document.getElementById("code").value
-
-const res=await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/login?email="+email+"&code="+code)
+const res=await fetch("https://snowy-shape-ff1e.polina702070.workers.dev/telegram-login?code="+code)
 
 const text=await res.text()
 
-if(text.includes("login success")){
+if(text==="success"){
 
-localStorage.setItem("email",email)
 localStorage.setItem("logged","true")
 
 window.location.href="account.html"
@@ -106,10 +108,10 @@ window.location.href="account.html"
 alert("Wrong code")
 
 }
- 
+
 }
 
 </script>
 
- </body>
+</body>
 </html>
