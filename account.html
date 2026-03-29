@@ -136,7 +136,7 @@ setInterval(loadBonus,5000)
 
 function withdraw(){
 
-let bonus=parseInt(localStorage.getItem("bonus"))||0
+let bonus = parseInt(document.getElementById("bonus").innerText) || 0
 let email=localStorage.getItem("email")
 let pubg=localStorage.getItem("pubg")
 let nickname=localStorage.getItem("nickname")
