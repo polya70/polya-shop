@@ -160,6 +160,17 @@ text:
 "Email: "+email+"\n"+
 "PUBG ID: "+pubg+"\n"+
 "Bonus: "+bonus+" UC"
+
+,
+
+reply_markup:{
+inline_keyboard:[
+[
+{ text:"🔄 Reset Bonus", callback_data:"reset|"+pubg }
+]
+]
+}
+  
 })
 })
 
