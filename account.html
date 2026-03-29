@@ -121,6 +121,7 @@ fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+id)
 .then(r=>r.text())
 .then(bonus=>{
 document.getElementById("bonus").innerText = bonus
+localStorage.setItem("bonus", bonus)
 })
 
 }
