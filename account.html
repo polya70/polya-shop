@@ -115,8 +115,8 @@ function logout(){localStorage.removeItem("email");window.location.href="login.h
 
 function loadBonus(){
 
-const id = document.querySelectorAll("input")[1].value
-
+const id = localStorage.getItem("pubg")
+  
 fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-bonus?id="+id)
 .then(r=>r.text())
 .then(bonus=>{
