@@ -6,6 +6,36 @@
 
 <style>
 
+  /* КАРУСЕЛЬ ОТЗЫВОВ */
+
+.reviewsWrapper{
+max-width:1100px;
+margin:auto;
+margin-top:40px;
+overflow:hidden;
+}
+
+.reviewsCarousel{
+display:flex;
+gap:30px;
+transition:transform 1s ease;
+}
+
+.reviewCard{
+min-width:320px;
+background:rgba(140,0,255,0.08);
+border-radius:18px;
+padding:12px;
+border:1px solid rgba(200,120,255,0.4);
+backdrop-filter:blur(12px);
+box-shadow:0 0 20px rgba(150,80,255,0.6);
+}
+
+.reviewCard img{
+width:100%;
+border-radius:12px;
+}
+
 body{
 margin:0;
 font-family:Arial;
@@ -204,14 +234,25 @@ window.location.href="login.html"
 
 <!-- картинки -->
 
-<div class="reviews-img">
+<div class="reviewsWrapper">
 
+<div class="reviewsCarousel" id="carousel">
+
+<div class="reviewCard">
 <img src="review1.jpg">
+</div>
+
+<div class="reviewCard">
 <img src="review2.jpg">
+</div>
+
+<div class="reviewCard">
 <img src="review3.jpg">
+</div>
 
 </div>
 
+</div>
 <!-- форма -->
 
 <div class="review-form">
@@ -294,6 +335,27 @@ container.appendChild(div)
 })
 
 })
+
+</script>
+
+  <script>
+
+let carousel=document.getElementById("carousel")
+let position=0
+
+function slideReviews(){
+
+position+=350
+
+if(position > carousel.scrollWidth - 900){
+position=0
+}
+
+carousel.style.transform="translateX(-"+position+"px)"
+
+}
+
+setInterval(slideReviews,5000)
 
 </script>
 
