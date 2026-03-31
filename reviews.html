@@ -115,6 +115,7 @@ padding:15px;
 border-radius:12px;
 margin:15px;
 }
+
 .review-card{
 background:rgba(255,255,255,0.08);
 padding:20px;
@@ -171,7 +172,7 @@ transform:translateY(0);
 
 <body>
 
-  <script>
+<script>
 
 if(localStorage.getItem("session")!=="active"){
 window.location.href="login.html"
@@ -206,9 +207,7 @@ window.location.href="login.html"
 <div class="reviews-img">
 
 <img src="review1.jpg">
-
 <img src="review2.jpg">
-
 <img src="review3.jpg">
 
 </div>
@@ -237,17 +236,28 @@ window.location.href="login.html"
 
 <script>
 
+/* ИСПРАВЛЕННАЯ ФУНКЦИЯ */
+
 function sendReview(){
 
 const name = document.getElementById("name").value
-
 const text = document.getElementById("text").value
 
-fetch(`https://snowy-shape-ff1e.polina702070.workers.dev/?name=${encodeURIComponent(name)}&text=${encodeURIComponent(text)}`)
+fetch(`https://snowy-shape-ff1e.polina702070.workers.dev/send-review?name=${encodeURIComponent(name)}&text=${encodeURIComponent(text)}`)
 
+.then(res=>res.text())
+
+.then(data=>{
+
+if(data==="sent"){
 alert("Отзыв отправлен на проверку")
+}
+
+})
 
 }
+
+/* загрузка отзывов */
 
 fetch("https://snowy-shape-ff1e.polina702070.workers.dev/get-reviews")
 
