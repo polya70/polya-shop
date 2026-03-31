@@ -89,6 +89,11 @@ Open Telegram Bot
 
 <script>
 
+// если пользователь уже вошел — сразу перекинуть в аккаунт
+if(localStorage.getItem("logged")==="true"){
+window.location.href="account.html"
+}
+
 async function tglogin(){
 
 const code=document.getElementById("tgcode").value
@@ -99,8 +104,12 @@ const text=await res.text()
 
 if(text==="success"){
 
+// сохраняем сессию
 localStorage.setItem("logged","true")
 localStorage.setItem("session","active")
+
+// сохраняем время входа (доп защита)
+localStorage.setItem("login_time",Date.now())
 
 window.location.href="account.html"
 
